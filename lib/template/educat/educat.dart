@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:publish_practice/template/educat/constant/constant.dart';
 import 'package:publish_practice/template/educat/page/edu_home.dart';
 
 class Educat extends StatelessWidget {
@@ -9,17 +10,12 @@ class Educat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEAE9E5),
-      appBar: AppBar(
-        title: Text(
-          'Educat',
-        ),
-      ),
-      body: EduHome(),
+      backgroundColor: Constant.BACKGORUND_COLOR,
+      body: const EduHome(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.red,
-        currentIndex: 1,
+        selectedItemColor: Constant.BLACK_COLOR,
+        currentIndex: 0,
         onTap: (index) {
           print(index);
         },

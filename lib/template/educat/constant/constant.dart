@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Constant {
-  static Color BLACK_COLOR = const Color(0xFF000000);
+  static Color BLACK_COLOR = const Color(0xFF363636);
+  static Color WHITE_COLOR = const Color(0xFFFFFFFF);
   static Color DEEP_BACKGROUND_COLOR = const Color(0xFFC1AA6A);
   static Color SUB_TEXT_COLOR = const Color(0xFFB9B5A8);
   static Color BACKGORUND_COLOR = const Color(0xFFEAE9E5);

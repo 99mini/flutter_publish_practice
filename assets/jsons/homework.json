@@ -1,0 +1,14 @@
+{
+    "homeworkList":[
+        {
+            "teacherName": "Dieter Rams",
+            "homeworkName": "A Simple Guide to Pricing Your Virtual Products",
+            "img": "homework1"
+        },
+        {
+            "teacherName": "Dvorah Lansky",
+            "homeworkName": "Transform Your Action Journal into a 30-Day Challenge",
+            "img": "homework2"
+        }
+    ]
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:publish_practice/template/app.dart';
 import 'package:publish_practice/template/educat/educat.dart';
+import 'package:publish_practice/template/music_app/music_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
           name: '/educat',
           page: () => Educat(),
         ),
+        GetPage(
+          name: '/music_app',
+          page: () => MusicApp(),
+        )
       ],
     );
   }

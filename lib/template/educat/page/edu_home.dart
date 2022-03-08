@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:publish_practice/template/educat/constant/constant.dart';
 import 'package:publish_practice/template/educat/model/homework_model.dart';
@@ -171,36 +172,29 @@ class EduHome extends StatelessWidget {
     );
   }
 
-  Widget _courseComponent({required String title}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: GoogleFonts.jost(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Constant.BLACK_COLOR,
+  Widget _courseTitleComponent({
+    required String title,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 24.0,
+        right: 24.0,
+        bottom: 10.0,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.jost(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Constant.BLACK_COLOR,
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        Row(
-          children: [
-            _courseCard(
-              courseName: 'Illustrator 2021 MasterClass',
-              img: 'illustrator',
-              level: 'BEGINNER',
-              teacherName: 'Dieter Rams',
-            ),
-            _courseCard(
-              courseName: 'The Ultimate Drawing Course',
-              img: 'drawing',
-              level: 'ADVANCED',
-              teacherName: 'Dvorah Lansky',
-            ),
-          ],
-        ),
-      ],
+          Container(),
+        ],
+      ),
     );
   }
 
@@ -313,29 +307,203 @@ class EduHome extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _masterClassTitle() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // logo & profile
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              SvgPicture.asset('assets/svgs/logo.svg'),
-              _profileWidget(),
-            ]),
-            const SizedBox(height: 24),
-            Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Educat\ncoaching',
+            style: GoogleFonts.jost(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Constant.BLACK_COLOR,
+            ),
+          ),
+          Row(
+            children: [
+              Container(
+                width: 56,
+                height: 20,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Constant.DEEP_BACKGROUND_COLOR,
+                ),
+                child: Center(
+                  child: Text(
+                    'GOLD',
+                    style: GoogleFonts.jost(
+                      fontSize: 9,
+                      fontWeight: FontWeight.normal,
+                      color: Constant.BLACK_COLOR,
+                      letterSpacing: 4,
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                'MASTERCLASS',
+                style: GoogleFonts.jost(
+                  fontSize: 9,
+                  fontWeight: FontWeight.normal,
+                  color: Constant.BLACK_COLOR,
+                  letterSpacing: 8,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _masterClassBox() {
+    return Stack(
+      children: [
+        SizedBox(
+          width: Get.width,
+          height: 288,
+        ),
+        Positioned(
+          top: 88,
+          child: Container(
+            width: Get.width,
+            height: 200,
+            decoration: BoxDecoration(
+              color: Constant.DEEP_BLUE_COLOR,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 135.0,
+                bottom: 20,
+                left: 125,
+                right: 32,
+              ),
+              child: RichText(
+                text: TextSpan(
+                  text:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eros enim, dictum vitae quam nec, congue feugiat neque. Vivamus ut luctus enim.',
+                  style: GoogleFonts.jost(
+                    fontSize: 10,
+                    fontWeight: FontWeight.normal,
+                    color: Constant.WHITE_COLOR,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Center(
+          child: Container(
+            width: Get.width * 0.9,
+            height: 214,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: const DecorationImage(
+                image: AssetImage('assets/images/home_party.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 130,
+                left: 100,
+                right: 50,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'by Dieter Rams',
+                    style: GoogleFonts.jost(
+                      fontSize: 10,
+                      fontWeight: FontWeight.normal,
+                      color: Constant.WHITE_COLOR,
+                    ),
+                  ),
+                  RichText(
+                    maxLines: 3,
+                    text: TextSpan(
+                      text:
+                          'How to travel and get paid in 2021 during Covid season',
+                      style: GoogleFonts.jost(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Constant.WHITE_COLOR,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(
+            top: 180,
+            left: 48,
+          ),
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            color: Constant.DEEP_BLUE_COLOR,
+            shape: BoxShape.circle,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(
+            top: 210 - 25,
+            left: 78 - 25,
+          ),
+          width: 50,
+          height: 50,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: AssetImage('assets/images/profile.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // logo & profile
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SvgPicture.asset('assets/svgs/logo.svg'),
+                  _profileWidget(),
+                ]),
+          ),
+          const SizedBox(height: 24),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
               children: [
                 _selectText(title: 'In Progress', selected: true),
                 _selectText(title: 'Saved', selected: false),
                 _selectText(title: 'Coaching', selected: false),
               ],
             ),
-            const SizedBox(height: 12),
-            Column(
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
@@ -356,9 +524,12 @@ class EduHome extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
-            //Homework card
-            Row(
+          ),
+          const SizedBox(height: 10),
+          //Homework card
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
               children: [
                 _homeworkCard(
                   img: 'homework1',
@@ -377,10 +548,76 @@ class EduHome extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 34),
-            _courseComponent(title: 'WATCH HISTORY'),
-          ],
-        ),
+          ),
+          const SizedBox(height: 34),
+          _courseTitleComponent(title: 'WATCH HISTORY'),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              children: [
+                _courseCard(
+                  courseName: 'Illustrator 2021 MasterClass',
+                  img: 'illustrator',
+                  level: 'BEGINNER',
+                  teacherName: 'Dieter Rams',
+                ),
+                _courseCard(
+                  courseName: 'The Ultimate Drawing Course',
+                  img: 'drawing',
+                  level: 'ADVANCED',
+                  teacherName: 'Dvorah Lansky',
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          _masterClassTitle(),
+          const SizedBox(height: 12),
+          _masterClassBox(),
+          const SizedBox(height: 32),
+          _courseTitleComponent(title: 'TRENDING NOW'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              children: [
+                _courseCard(
+                  courseName: 'Illustrator 2021 MasterClass',
+                  img: 'swimming',
+                  level: 'BEGINNER',
+                  teacherName: 'Dieter Rams',
+                ),
+                _courseCard(
+                  courseName: 'The Ultimate Drawing Course',
+                  img: 'drawing',
+                  level: 'ADVANCED',
+                  teacherName: 'Dvorah Lansky',
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 32),
+          _courseTitleComponent(title: 'BEST SKILLS'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              children: [
+                _courseCard(
+                  courseName: 'Illustrator 2021 MasterClass',
+                  img: 'swimming',
+                  level: 'BEGINNER',
+                  teacherName: 'Dieter Rams',
+                ),
+                _courseCard(
+                  courseName: 'The Ultimate Drawing Course',
+                  img: 'drawing',
+                  level: 'ADVANCED',
+                  teacherName: 'Dvorah Lansky',
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

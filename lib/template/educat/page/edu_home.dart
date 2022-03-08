@@ -485,7 +485,12 @@ class EduHome extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset('assets/svgs/logo.svg'),
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset('assets/svgs/logo.svg'),
+                  ),
                   _profileWidget(),
                 ]),
           ),

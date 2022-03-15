@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:publish_practice/binding/init_binding.dart';
 import 'package:publish_practice/template/app.dart';
 import 'package:publish_practice/template/educat/educat.dart';
 import 'package:publish_practice/template/music_app/music_app.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
+      initialBinding: InitBinding(),
       initialRoute: '/',
       getPages: [
         GetPage(

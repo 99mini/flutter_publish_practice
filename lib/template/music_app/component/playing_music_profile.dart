@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:publish_practice/template/music_app/controller/music_app_controller.dart';
 
 class PlayingMusicProfile extends GetView<MusicAppController> {
   final String img;
-
   const PlayingMusicProfile({
     Key? key,
     required this.img,

@@ -51,7 +51,9 @@ class MusicPlayerComponent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Center(
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            print(icon.toString());
+          },
           child: SizedBox(
             width: size,
             height: size,

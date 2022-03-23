@@ -116,9 +116,9 @@ class CustomBottomSheet extends StatelessWidget {
       child: Container(
         width: Get.width,
         height: Get.height,
-        decoration: BoxDecoration(
-          color: const Color(0xFF121212).withOpacity(0.7),
-          borderRadius: const BorderRadius.only(
+        decoration: const BoxDecoration(
+          color: Color(0xFF121212),
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40),
             topRight: Radius.circular(40),
           ),
@@ -130,47 +130,54 @@ class CustomBottomSheet extends StatelessWidget {
               singer: 'Got the beat',
               img: 'step_back.jpeg',
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 42,
-                right: 26,
-                top: 22,
-              ),
-              //TODO ListView.builder
+            Expanded(
               child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(children: [
-                  _musicInfoComponent(
-                    img: 'step_back.jpeg',
-                    singer: 'Got the beat',
-                    title: 'Step Back',
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 42,
+                    right: 26,
+                    top: 22,
                   ),
-                  _musicInfoComponent(
-                    img: 'eleven.jpeg',
-                    singer: 'IVE (아이브)',
-                    title: 'ELEVEN',
+                  child: Column(
+                    children: [
+                      _musicInfoComponent(
+                        img: 'step_back.jpeg',
+                        singer: 'Got the beat',
+                        title: 'Step Back',
+                      ),
+                      _musicInfoComponent(
+                        img: 'eleven.jpeg',
+                        singer: 'IVE (아이브)',
+                        title: 'ELEVEN',
+                      ),
+                      _musicInfoComponent(
+                        img: 'smiley.jpeg',
+                        singer: 'YENA (최예나)',
+                        title: 'SMILEY(feat. BIBI)',
+                      ),
+                      _musicInfoComponent(
+                        img: 'dreams_come_true.jpeg',
+                        singer: 'aespa',
+                        title: 'Dreams Come True',
+                      ),
+                      _musicInfoComponent(
+                        img: 'stronger.jpeg',
+                        singer: 'Kelly Clarkson(켈리 클락슨)',
+                        title: 'Stronger (What Doesn’t Kill you)',
+                      ),
+                      _musicInfoComponent(
+                        img: 'next_level.png',
+                        singer: 'aespa',
+                        title: 'Next Level',
+                      ),
+                      _musicInfoComponent(
+                        img: 'next_level.png',
+                        singer: 'aespa',
+                        title: 'Next Level',
+                      ),
+                    ],
                   ),
-                  _musicInfoComponent(
-                    img: 'smiley.jpeg',
-                    singer: 'YENA (최예나)',
-                    title: 'SMILEY(feat. BIBI)',
-                  ),
-                  _musicInfoComponent(
-                    img: 'dreams_come_true.jpeg',
-                    singer: 'aespa',
-                    title: 'Dreams Come True',
-                  ),
-                  _musicInfoComponent(
-                    img: 'stronger.jpeg',
-                    singer: 'Kelly Clarkson(켈리 클락슨)',
-                    title: 'Stronger (What Doesn’t Kill you)',
-                  ),
-                  _musicInfoComponent(
-                    img: 'next_level.png',
-                    singer: 'aespa',
-                    title: 'Next Level',
-                  ),
-                ]),
+                ),
               ),
             ),
           ],

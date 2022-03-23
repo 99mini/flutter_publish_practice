@@ -24,7 +24,7 @@ class MusicPlayerComponent extends StatelessWidget {
           title,
           maxLines: 1,
           style: GoogleFonts.roboto(
-            fontSize: 20,
+            fontSize: home! ? 28 : 20,
             fontWeight: FontWeight.normal,
             color: const Color(0xFFF8F8F8),
           ),
@@ -34,7 +34,7 @@ class MusicPlayerComponent extends StatelessWidget {
           singer,
           maxLines: 1,
           style: GoogleFonts.roboto(
-            fontSize: 16,
+            fontSize: home! ? 20 : 16,
             fontWeight: FontWeight.normal,
             color: const Color(0xFF808080),
           ),
@@ -78,7 +78,7 @@ class MusicPlayerComponent extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Container(
-          width: Get.width * 0.5,
+          width: home! ? Get.width * 0.8 : Get.width * 0.5,
           height: 2,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),
@@ -97,7 +97,7 @@ class MusicPlayerComponent extends StatelessWidget {
             ),
             _playbarBtnIcon(
               icon: Icons.play_arrow,
-              size: 32,
+              size: 36,
             ),
             _playbarBtnIcon(
               icon: Icons.arrow_forward_ios,

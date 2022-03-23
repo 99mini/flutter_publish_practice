@@ -4,9 +4,11 @@ import 'package:publish_practice/template/music_app/controller/music_app_control
 
 class PlayingMusicProfile extends GetView<MusicAppController> {
   final String img;
-  const PlayingMusicProfile({
+  bool? home;
+  PlayingMusicProfile({
     Key? key,
     required this.img,
+    this.home = false,
   }) : super(key: key);
 
   @override
@@ -14,8 +16,8 @@ class PlayingMusicProfile extends GetView<MusicAppController> {
     return Stack(
       children: [
         Container(
-          width: Get.width * 0.3,
-          height: Get.width * 0.3,
+          width: home! ? Get.width * 0.4 : Get.width * 0.3,
+          height: home! ? Get.width * 0.4 : Get.width * 0.3,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             image: DecorationImage(

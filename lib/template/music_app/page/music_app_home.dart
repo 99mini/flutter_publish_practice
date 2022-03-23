@@ -48,6 +48,7 @@ class MusicAppHome extends StatelessWidget {
               children: [
                 PlayingMusicProfile(
                   img: 'step_back.jpeg',
+                  home: true,
                 ),
                 const SizedBox(height: 24),
                 MusicPlayerComponent(

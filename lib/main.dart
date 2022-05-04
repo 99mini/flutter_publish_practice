@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:publish_practice/binding/init_binding.dart';
+import 'package:publish_practice/template/alphabet_app/alphabet_app.dart';
 import 'package:publish_practice/template/app.dart';
 import 'package:publish_practice/template/educat/educat.dart';
 import 'package:publish_practice/template/music_app/music_app.dart';
@@ -35,7 +36,11 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/music_app',
           page: () => MusicApp(),
-        )
+        ),
+        GetPage(
+          name: '/alphabet_app',
+          page: () => AlphabetApp(),
+        ),
       ],
     );
   }

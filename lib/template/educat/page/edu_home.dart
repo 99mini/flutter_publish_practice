@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:publish_practice/template/educat/constant/constant.dart';
-import 'package:publish_practice/template/educat/model/homework_model.dart';
 
 class EduHome extends StatelessWidget {
   const EduHome({Key? key}) : super(key: key);
@@ -532,31 +530,41 @@ class EduHome extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           //Homework card
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Row(
-              children: [
-                _homeworkCard(
-                  img: 'homework1',
-                  teacherName: 'Dieter Rams',
-                  homeworkName:
-                      'A Simple Guide to Pricing Your Virtual Products',
-                  progress: 3,
-                ),
-                _homeworkCard(
-                  img: 'homework2',
-                  teacherName: 'Dvorah Lansky',
-                  homeworkName:
-                      'Transform Your Action Journal into a 30-Day Challenge',
-                  progress: 5,
-                  onDartText: true,
-                ),
-              ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Row(
+                children: [
+                  _homeworkCard(
+                    img: 'homework1',
+                    teacherName: 'Dieter Rams',
+                    homeworkName:
+                        'A Simple Guide to Pricing Your Virtual Products',
+                    progress: 3,
+                  ),
+                  _homeworkCard(
+                    img: 'homework2',
+                    teacherName: 'Dvorah Lansky',
+                    homeworkName:
+                        'Transform Your Action Journal into a 30-Day Challenge',
+                    progress: 5,
+                    onDartText: true,
+                  ),
+                  _homeworkCard(
+                    img: 'homework2',
+                    teacherName: 'Dvorah Lansky',
+                    homeworkName:
+                        'Transform Your Action Journal into a 30-Day Challenge',
+                    progress: 5,
+                    onDartText: true,
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 34),
           _courseTitleComponent(title: 'WATCH HISTORY'),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Row(
@@ -622,6 +630,7 @@ class EduHome extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 32),
         ],
       ),
     );

@@ -6,6 +6,8 @@ import 'package:publish_practice/template/app.dart';
 import 'package:publish_practice/template/educat/educat.dart';
 import 'package:publish_practice/template/music_app/music_app.dart';
 
+import 'template/nutrient_app/nutrient_app.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -40,6 +42,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/alphabet_app',
           page: () => AlphabetApp(),
+        ),
+        GetPage(
+          name: '/nutrient_app',
+          page: () => NutrientApp(),
         ),
       ],
     );

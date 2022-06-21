@@ -48,6 +48,7 @@ class App extends StatelessWidget {
         _templateContainer(title: 'educat'),
         _templateContainer(title: 'music_app'),
         _templateContainer(title: 'alphabet_app'),
+        _templateContainer(title: 'nutrient_app'),
       ]),
     );
   }

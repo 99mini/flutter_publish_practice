@@ -536,6 +536,7 @@ class EduHome extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Row(
                 children: [
+                  //TODO using homework_model
                   _homeworkCard(
                     img: 'homework1',
                     teacherName: 'Dieter Rams',

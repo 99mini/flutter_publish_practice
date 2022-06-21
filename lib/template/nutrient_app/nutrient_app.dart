@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:publish_practice/template/nutrient_app/page/home_page.dart';
 
 class NutrientApp extends StatelessWidget {
   const NutrientApp({Key? key}) : super(key: key);
@@ -9,9 +8,9 @@ class NutrientApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("NutrientApp"),
+        title: const Text("NutrientApp"),
       ),
-      body: Container(),
+      body: const HomePage(),
     );
   }
 }

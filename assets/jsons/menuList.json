@@ -1,0 +1,29 @@
+[
+    {
+        "meal": "조식",
+        "totalKcal": "828",
+        "menuName": "율무밥",
+        "kind": "밥류",
+        "ingredients": ["흰쌀"],
+        "dose": "210",
+        "kcal": "130"
+    },
+    {
+        "meal": "중식",
+        "totalKcal": "781",
+        "menuName": "열무보리비빔밥",
+        "kind": "밥류",
+        "ingredients": ["보리쌀"],
+        "dose": "210",
+        "kcal": "130"
+    },
+    {
+        "meal": "석식",
+        "totalKcal": "828",
+        "menuName": "율무밥",
+        "kind": "밥류",
+        "ingredients": ["잡쌀", "땅콩"],
+        "dose": "210",
+        "kcal": "130"
+    }
+]

@@ -33,12 +33,30 @@ class _HomePageState extends State<HomePage> {
     loadJsonData();
   }
 
+  TextStyle _menuDetailTextStyle() {
+    return const TextStyle(
+      fontSize: 14,
+      color: Colors.black54,
+    );
+  }
+
   Widget _menuDetail(String title, String content, {String? unit}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title),
-        unit == null ? Text(content) : Text(content + unit),
+        Text(
+          title,
+          style: _menuDetailTextStyle(),
+        ),
+        unit == null
+            ? Text(
+                content,
+                style: _menuDetailTextStyle(),
+              )
+            : Text(
+                content + unit,
+                style: _menuDetailTextStyle(),
+              ),
       ],
     );
   }
@@ -71,17 +89,30 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${meal['meal']}"),
-                    SizedBox(height: 12),
+                    Text(
+                      "${meal['meal']}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
                     Row(
                       children: [
                         Text(
                           "${meal['totalKcal']}",
                           style: const TextStyle(
                             color: Colors.green,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const Text(' kcal'),
+                        const Text(
+                          ' kcal',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -104,12 +135,21 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("${meal['menuName']}"),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.favorite,
-                            size: 14,
+                        Text(
+                          "${meal['menuName']}",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            print(index);
+                          },
+                          child: Icon(
+                            Icons.favorite_outline,
+                            size: 18,
+                            color: Colors.red,
                           ),
                         ),
                       ],
@@ -119,9 +159,10 @@ class _HomePageState extends State<HomePage> {
                     _menuDetail("재료", meal['ingredients'][0]),
                     _menuDetail("정량", meal['dose'], unit: 'g'),
                     _menuDetail("칼로리", meal['kcal'], unit: 'kcal'),
+                    const SizedBox(height: 48),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         );
@@ -129,37 +170,46 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _nutrientsBar() {
+  Widget _nutrientsBar({
+    required String title,
+    required double percentage,
+    required List<Color> colors,
+  }) {
+    double barWidth = 0.8;
+    double barHight = 0.03;
+    var percentageWidth =
+        MediaQuery.of(context).size.width * barWidth * 0.01 * percentage;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("탄수화물"),
+        const SizedBox(height: 10),
+        Text(title),
         const SizedBox(height: 4),
         Row(
           children: [
             Stack(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  width: MediaQuery.of(context).size.width * barWidth,
+                  height: MediaQuery.of(context).size.height * barHight,
                   decoration: const BoxDecoration(
                     color: Colors.black12,
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  width: percentageWidth,
+                  height: MediaQuery.of(context).size.height * barHight,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        colors: [Colors.purple[200]!, Colors.amber],
+                        colors: colors,
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight),
                   ),
                 ),
                 Positioned(
-                  left: MediaQuery.of(context).size.width * 0.2 - 24,
+                  left: percentageWidth - 24,
                   child: Text(
-                    "24",
+                    "$percentage",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -176,6 +226,51 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _nutrientBarWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "다량영양소",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        _nutrientsBar(
+          title: "탄수화물",
+          percentage: 24,
+          colors: [Colors.purple[200]!, Colors.amber],
+        ),
+        _nutrientsBar(
+            title: "단백질",
+            percentage: 65,
+            colors: [Colors.purple[400]!, Colors.amber]),
+        _nutrientsBar(
+          title: "지방",
+          percentage: 51,
+          colors: [Colors.blue[200]!, Colors.amber],
+        ),
+        _nutrientsBar(
+          title: "총 식이섬유",
+          percentage: 24,
+          colors: [Colors.blue[200]!, Colors.black26],
+        ),
+        _nutrientsBar(
+          title: "콜레스트롤",
+          percentage: 48,
+          colors: [Colors.blue[200]!, Colors.green],
+        ),
+        _nutrientsBar(
+          title: "총 포화 지방산",
+          percentage: 48,
+          colors: [Colors.blue[200]!, Colors.blueGrey],
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,19 +280,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             _menuListView(),
             const SizedBox(height: 28),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "다량영양소",
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.black87,
-                  ),
-                ),
-                _nutrientsBar(),
-              ],
-            ),
+            _nutrientBarWidget(),
+            const SizedBox(height: 28),
           ],
         ),
       ),

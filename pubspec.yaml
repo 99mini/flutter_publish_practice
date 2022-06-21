@@ -37,6 +37,8 @@ dependencies:
   get: ^4.6.1
   google_fonts: ^2.3.1
   flutter_svg: ^1.0.3
+  pie_chart: ^5.3.1
+
 
 
 

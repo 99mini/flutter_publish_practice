@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 import '../model/menu_model.dart';
 
@@ -282,6 +283,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 28),
             _nutrientBarWidget(),
             const SizedBox(height: 28),
+            PieChart(dataMap: {"단백질": 35.0, "탄수화물": 35.0, "지방": 30.0}),
           ],
         ),
       ),

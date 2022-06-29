@@ -6,14 +6,17 @@ class MenuModel {
   List<String>? ingredients;
   String? dose;
   String? kcal;
-  MenuModel(
-      {this.meal,
-      this.totalKcal,
-      this.menuName,
-      this.kind,
-      this.ingredients,
-      this.dose,
-      this.kcal});
+  String? favorite;
+  MenuModel({
+    this.meal,
+    this.totalKcal,
+    this.menuName,
+    this.kind,
+    this.ingredients,
+    this.dose,
+    this.kcal,
+    this.favorite,
+  });
   MenuModel.fromJson(Map<String, dynamic> json) {
     meal = json['meal'];
     totalKcal = json['totalKcal'];
@@ -22,6 +25,7 @@ class MenuModel {
     ingredients = json['ingredients'];
     dose = json['dose'];
     kcal = json['kcal'];
+    favorite = json['favorite'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -32,6 +36,7 @@ class MenuModel {
     data['ingredients'] = ingredients;
     data['dose'] = dose;
     data['kcal'] = kcal;
+    data['favorite'] = favorite;
     return data;
   }
 }

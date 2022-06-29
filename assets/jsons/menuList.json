@@ -6,7 +6,8 @@
         "kind": "밥류",
         "ingredients": ["흰쌀"],
         "dose": "210",
-        "kcal": "130"
+        "kcal": "130",
+        "favorite": "false" 
     },
     {
         "meal": "중식",
@@ -15,7 +16,8 @@
         "kind": "밥류",
         "ingredients": ["보리쌀"],
         "dose": "210",
-        "kcal": "130"
+        "kcal": "130",
+        "favorite": "false"
     },
     {
         "meal": "석식",
@@ -24,6 +26,7 @@
         "kind": "밥류",
         "ingredients": ["잡쌀", "땅콩"],
         "dose": "210",
-        "kcal": "130"
+        "kcal": "130",
+        "favorite": "false"
     }
 ]

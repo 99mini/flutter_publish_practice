@@ -6,11 +6,8 @@ class NutrientApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("NutrientApp"),
-      ),
-      body: const HomePage(),
+    return const Scaffold(
+      body: HomePage(),
     );
   }
 }

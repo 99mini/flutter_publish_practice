@@ -1,13 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:pie_chart/pie_chart.dart';
-
-import '../model/menu_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,6 +14,9 @@ class HomePage extends StatefulWidget {
 late List data;
 
 class _HomePageState extends State<HomePage> {
+  bool isHover = false;
+  bool isFavorite = false;
+
   Future<String> loadJsonData() async {
     var jsonText = await rootBundle.loadString('assets/jsons/menuList.json');
 
@@ -38,6 +36,13 @@ class _HomePageState extends State<HomePage> {
     return const TextStyle(
       fontSize: 14,
       color: Colors.black54,
+    );
+  }
+
+  BorderSide _menuBorderSide() {
+    return const BorderSide(
+      width: 0.5,
+      color: Colors.black26,
     );
   }
 
@@ -63,30 +68,35 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _menuListView() {
+    bool isHover = this.isHover;
+    bool isFavorite = this.isFavorite;
     return ListView.builder(
       shrinkWrap: true,
       itemCount: data.length,
       itemBuilder: (BuildContext context, int index) {
         var meal = data[index];
         return Container(
-          decoration: const BoxDecoration(
+          height: MediaQuery.of(context).size.height * 0.25,
+          decoration: BoxDecoration(
             border: Border(
-              bottom: BorderSide(
-                width: 0.5,
-                color: Colors.black26,
-              ),
-              right: BorderSide(
-                width: 0.5,
-                color: Colors.black26,
-                //TODO dash line
-              ),
+              //TODO Dash Border
+              right: _menuBorderSide(),
             ),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
+                width: MediaQuery.of(context).size.width * 0.2,
                 padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: index == 0
+                        ? _menuBorderSide()
+                        : const BorderSide(style: BorderStyle.none),
+                    bottom: _menuBorderSide(),
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -119,49 +129,71 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                width: MediaQuery.of(context).size.width * 0.7,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      width: 0.5,
-                      color: Colors.black26,
+              InkWell(
+                onTap: () {
+                  debugPrint("menu detail: $index");
+                },
+                onHover: (val) {
+                  setState(() {
+                    isHover = val;
+                  });
+                },
+                hoverColor: Colors.blue[100],
+                splashColor: Colors.blue[200],
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  // padding * 2 + border width
+                  // 10 * 2 + 0.5
+                  width: MediaQuery.of(context).size.width * 0.8 - 20.5,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: index == 0
+                          ? _menuBorderSide()
+                          : const BorderSide(style: BorderStyle.none),
+                      left: _menuBorderSide(),
+                      bottom: _menuBorderSide(),
                     ),
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${meal['menuName']}",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${meal['menuName']}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            print(index);
-                          },
-                          child: Icon(
-                            Icons.favorite_outline,
-                            size: 18,
-                            color: Colors.red,
+                          GestureDetector(
+                            onTap: () {
+                              debugPrint("favorite menu: $index - $isFavorite");
+                              setState(() {
+                                //TODO favorite을 데이터 별로 나누기
+                                this.isFavorite =
+                                    this.isFavorite ? false : true;
+                              });
+                            },
+                            child: Icon(
+                              this.isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline,
+                              size: 18,
+                              color: Colors.red,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    _menuDetail("종류", meal['kind']),
-                    _menuDetail("재료", meal['ingredients'][0]),
-                    _menuDetail("정량", meal['dose'], unit: 'g'),
-                    _menuDetail("칼로리", meal['kcal'], unit: 'kcal'),
-                    const SizedBox(height: 48),
-                  ],
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      _menuDetail("종류", meal['kind']),
+                      _menuDetail("재료", meal['ingredients'][0]),
+                      _menuDetail("정량", meal['dose'], unit: 'g'),
+                      _menuDetail("칼로리", meal['kcal'], unit: 'kcal'),
+                      const SizedBox(height: 48),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -279,6 +311,7 @@ class _HomePageState extends State<HomePage> {
         margin: const EdgeInsets.symmetric(horizontal: 10),
         child: ListView(
           children: [
+            const SizedBox(height: 12),
             _menuListView(),
             const SizedBox(height: 28),
             _nutrientBarWidget(),
